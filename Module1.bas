@@ -1,5 +1,5 @@
 Attribute VB_Name = "Module1"
-' arguments
+' variables
 
 Option Explicit
 

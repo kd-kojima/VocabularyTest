@@ -5,7 +5,7 @@ Option Explicit
 
 '
 ' Retrieved from
-'   https://vbabeginner.net/bulk-export-of-standard-modules/
+'   https://vbabeginner.net/bulk-export-of-standard-modules/    (2022.06.26)
 '
 Sub ExportAll()
     Dim module                  As VBComponent      '// ÉÇÉWÉÖÅ[Éã
