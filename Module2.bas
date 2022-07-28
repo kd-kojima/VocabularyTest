@@ -66,10 +66,10 @@ Function makemain(type_ As Integer)
         End If
     Next
     
-    If UBound(index) + 1 < numQ Then
+    If count < numQ Then
         MsgBox _
             "テスト範囲の単語数は、既定の問題数（" & numQ & "問）以上である必要があります。" & vbLf & _
-            "開始番号：" & sn & vbLf & "終了番号：" & en & vbLf & "単語数：" & UBound(index) + 1 & vbLf & vbLf & _
+            "開始番号：" & sn & vbLf & "終了番号：" & en & vbLf & "単語数：" & count & vbLf & vbLf & _
             "テスト範囲を変更して再度お試しください。", vbInformation
         Exit Function
     End If
@@ -107,8 +107,8 @@ Sub create_2in1()
     regName.Pattern = "^\d{8}_\d{6}"
     
     j = 1
-    For i = 1 To Worksheets.count
-        If regName.test(Worksheets(i).name) Then
+    For i = 1 To this.Worksheets.count
+        If regName.test(this.Worksheets(i).name) Then
             ReDim Preserve sIndex(j)
             sIndex(j) = i
             j = j + 1
@@ -123,7 +123,7 @@ Sub create_2in1()
     Dim s_name As String
     Dim tSheet As Worksheet
     s_name = Format(Now, "yyyymmdd_hhmmss")
-    temp2in1.Copy after:=Worksheets(Worksheets.count)
+    temp2in1.Copy after:=this.Worksheets(this.Worksheets.count)
     ActiveSheet.name = "2in1_" + s_name
     Set tSheet = ActiveSheet
     
@@ -134,11 +134,7 @@ Sub create_2in1()
     For i = 1 To UBound(sIndex)
         sr = (Int((i - 1) / 2)) * last_row + 1
         sc = ((i - 1) Mod 2) * last_col + 1
-        Set thisSheet = Worksheets(sIndex(i))
+        Set thisSheet = this.Worksheets(sIndex(i))
         thisSheet.range(thisSheet.Cells(1, 1), thisSheet.Cells(last_row, last_col)).Copy tSheet.range(tSheet.Cells(sr, sc), tSheet.Cells(sr + last_row - 1, sc + last_col - 1))
     Next
-End Sub
-
-Sub setup()
-
 End Sub
